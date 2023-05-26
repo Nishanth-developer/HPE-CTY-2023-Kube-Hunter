@@ -11,6 +11,8 @@ import json
 import subprocess
 from tqdm import tqdm, trange
 
+json_bin_link = input("Enter your npoint.io JSON bin link: ")
+
 cmd = "kubectl get nodes -o wide"
 result = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True)
 
@@ -246,7 +248,7 @@ def enhanced_logging(filetext):
     json.dump(vulnerability_main_json, save_file)  
     save_file.close()  
 
-    response = requests.post("https://api.npoint.io/142c0ad067edfe6365b4", json=vulnerability_main_json)
+    response = requests.post(json_bin_link, json=vulnerability_main_json)
 
     # for i in trange(100, desc="Running", unit="iterations"):
     #     time.sleep(0.1)
